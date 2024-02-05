@@ -18,6 +18,9 @@ const Header = () => {
   return (
     <div style={headerStyles}>
       <div>
+      <NavLink to="/" >
+        <span style={linkStyles}>Homepage</span>
+        </NavLink>
         <NavLink to="/about" >
         <span style={linkStyles}>About</span>
         </NavLink>

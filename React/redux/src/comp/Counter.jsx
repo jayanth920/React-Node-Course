@@ -4,7 +4,7 @@ import {
   increment,
   incrementByAmount,
   incrementAsync,
-} from "../state/counter/counterSlice";
+} from "../state/slices/counterSlice";
 
 const Counter = () => {
   const count = useSelector((state) => state.counter.value);
