@@ -3,18 +3,20 @@ const express = require("express");
 const { connectToMongoDB } = require("./connect");
 const urlRoute = require("./routes/url");
 const URL = require("./models/url");
-
 const app = express();
 dotenv.config();
-
-
 const PORT = process.env.PORT || 8000;
 const MONGODB_URL = process.env.MONGODB_URL
+
+//connection - MongoDB
 connectToMongoDB(MONGODB_URL).then(() =>
   console.log("Mongodb connected")
 );
 
+//middleware
 app.use(express.json());
+
+//route
 app.use("/url", urlRoute);
 
 app.get("/:shortId", async (req, res) => {

@@ -21,9 +21,19 @@ async function handleGetAnalytics(req, res) {
       totalClicks: result.visitHistory
     });
   }
+
+  async function listUrls(req,res) {
+    try {
+      const urls = await URL.find({});
+      return res.json( urls );
+  } catch (error) {
+      return res.status(500).json({ error: "Failed to fetch URLs" });
+  }
+  }
   
   module.exports = {
     generateNewUrl,
-    handleGetAnalytics
+    handleGetAnalytics,
+    listUrls
   };
   
