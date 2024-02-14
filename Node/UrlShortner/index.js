@@ -1,24 +1,31 @@
 const dotenv = require("dotenv")
 const express = require("express");
+const app = express();
 const { connectToMongoDB } = require("./connect");
 const urlRoute = require("./routes/url");
 const URL = require("./models/url");
-const app = express();
+var cors = require('cors');
+
+//------------------------CONFIG - ENV etc----------------------------------------
 dotenv.config();
 const PORT = process.env.PORT || 8000;
 const MONGODB_URL = process.env.MONGODB_URL
 
-//connection - MongoDB
+//----------------------MONGODB CONNECTION------------------------------------------
 connectToMongoDB(MONGODB_URL).then(() =>
-  console.log("Mongodb connected")
+console.log("Mongodb connected")
 );
 
-//middleware
+//--------------------------MIDDLEWARE--------------------------------------
 app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+app.use(cors());
 
-//route
-app.use("/url", urlRoute);
+//-----------------------ROUTE-----------------------------------------
+app.use("/api", urlRoute);
 
+
+//-----------------SPECIAL ROUTE FOR REDIRECT AND VISIT HISTORY COUNT-----------------------
 app.get("/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
   console.log("Requested shortId:", shortId);
@@ -32,7 +39,7 @@ app.get("/:shortId", async (req, res) => {
   if (entry) {
     // Document found, log and redirect
     console.log("Entry:", entry);
-    res.redirect(entry.redirectURL);
+    res.redirect(entry.originalURL);
   } else {
     // Document not found, handle accordingly (e.g., send an error response)
     console.log("Entry not found for shortId:", shortId);
