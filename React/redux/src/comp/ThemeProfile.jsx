@@ -6,18 +6,13 @@ import { login, logout } from '../state/slices/profileSlice'
 
 
 function ThemeProfile() {
-    const currcolor = useSelector((state) => state.theme.value)
+    const currColor = useSelector((state) => state.theme.value)
     const user = useSelector((state) => state.profile.value)
     const dispatch = useDispatch()
 
     const[color,setColor] = useState("")
     const[name,setName] = useState("")
     const[age,setAge] = useState("")
-
-
-    function setProfile() {
-
-    }
 
   return (
     <div>
@@ -32,11 +27,14 @@ function ThemeProfile() {
 
 
 
-        <div style={{color : color}}>Color : {color}</div>
+        <div style={{color : currColor}}>Color : {currColor.toUpperCase()}</div>
         <input  onChange={(e) => { 
-          dispatch(changeTheme(e.target.value))
           setColor(e.target.value);
           }}></input>
+          <button onClick={() => {
+          dispatch(changeTheme(color));
+        }}>Click for color dispatch</button>
+
     </div>
   )
 }

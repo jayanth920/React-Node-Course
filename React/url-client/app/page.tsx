@@ -22,7 +22,7 @@ export default function Home(): JSX.Element {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/api/list");
+      const response: AxiosResponse = await axios.get("http://localhost:8000/api/list");
       console.log(response.data);
       setMyList(response.data);
     } catch (error) {
