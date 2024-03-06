@@ -16,3 +16,4 @@ export const profileSlice = createSlice({
 
 export default profileSlice.reducer
 export const {login, logout} = profileSlice.actions
+
