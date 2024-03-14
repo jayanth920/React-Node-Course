@@ -5,15 +5,15 @@ const useCounter = () => {
     const[count, setCount] = useState(0);
 
     const increment = () => {
-        setCount((prev) => prev+1)
+        setCount((prev: number) => prev+1)
     }
 
     const decrement = () => {
-        setCount((prev) => prev-1)
+        setCount((prev: number) => prev-1)
     }
 
     const reset = () => {
-        setCount((prev) => 0)
+        setCount((prev: number) => 0)
     }
 
     

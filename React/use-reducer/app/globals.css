@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Set colors for light mode */
+:root {
+  --foreground-color: #000; /* Black */
+  --background-color: #fff; /* White */
+}
+
+/* Set colors for dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-color: #fff; /* White */
+    --background-color: #000; /* Black */
+  }
+}
+
+/* Apply colors to body */
+body {
+  color: var(--foreground-color);
+  background-color: var(--background-color);
+}
+
+/* Additional utility class */
+.text-balance {
+  text-wrap: balance;
+}
