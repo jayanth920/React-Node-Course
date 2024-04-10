@@ -1,26 +1,29 @@
 import React, { useContext } from 'react'
-import { UserContext } from './UserContext'
+import { UserContext, userContext } from './UserContext'
 
 const User = () => {
 
-    const userContext = useContext(UserContext)
+    // const userContext = useContext(UserContext)
+
+
+    const {user, setUser } = userContext()
 
     const handleLogin = () => {
-            userContext.setUser({
+            setUser({
                 name: 'Jay',
                 email: 'haha@gmail.com'
             })
     }
 
     const handleLogout = () => {
-            userContext.setUser(null)
+            setUser(null)
         }
 
     return (
         <div><h1>USER COMPONENT</h1>
             <div>
-                Username is {userContext.user?.name} -------------
-                Email is {userContext.user?.email}
+                Username is {user?.name} -------------
+                Email is {user?.email}
             </div>
             <button onClick={handleLogin}>Login</button>
             <button onClick={handleLogout}>Logout</button>

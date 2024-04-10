@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState, useContext } from 'react'
 
 export type AuthUser = {
     name: string,
@@ -13,7 +13,6 @@ export type UserContextType = {
 export type UserContextProviderProps = {
     children: React.ReactNode
 }
-
 // export const UserContext = createContext<UserContextType | null>(null)
 export const UserContext = createContext({} as UserContextType)
 
@@ -24,6 +23,9 @@ export const UserContextProvider = ({ children }: UserContextProviderProps) => {
             {children}
         </UserContext.Provider>
     )
+}
+export const userContext = () => {
+    return useContext(UserContext)
 }
 
 
