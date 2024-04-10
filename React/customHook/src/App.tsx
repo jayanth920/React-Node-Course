@@ -27,8 +27,8 @@ import useFetch from './hooks/useFetch';
 import { useState } from 'react';
 
 const FetchData = () => {
-  const [term, setTerm] = useState("london");
-  const [debouncedTerm, setDebouncedTerm] = useState("london");
+  const [term, setTerm] = useState("");
+  const [debouncedTerm, setDebouncedTerm] = useState("");
 
   const handleButtonClick = () => {
     setDebouncedTerm(term); // Update debounced term when button is clicked
@@ -38,7 +38,6 @@ const FetchData = () => {
   const { isLoading, isError, data: user } = useFetch(url);
 
   console.log(user);
-  console.log(url);
 
   return (
     <div className='border-4 border-green-500 bg-amber-300'>

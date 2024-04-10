@@ -1,16 +1,15 @@
 import {useEffect, useState} from "react"
 
+function useCurrencyInfo(frm,to){
+    const [data, setData] = useState(null)
 
-function useCurrencyInfo(currency){
-    const [data, setData] = useState({})
     useEffect(() => {
-        fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${currency}.json`)
+        fetch(`https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_YSFfPGmOB86wFIwYzRCN5k3dJdqyWBR08nMtQ87o&currencies=${to}&base_currency=${frm}`)
         .then((res) => res.json())
-        .then((res) => setData(res[currency]))
+        .then((res) => setData(res))
         console.log(data);
-    }, [currency])
-    console.log(data);
-    return data
+    }, [frm,to])
+    return [ data ]
 }
 
 export default useCurrencyInfo;
