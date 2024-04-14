@@ -31,7 +31,9 @@ function App() {
           })
         }
         </select>
-        {countryName && <select value={cityName} onChange={(e) => setCityName(e.target.value)}>
+        {countryName && 
+        // <select value={cityName} onChange={(e) => setCityName(e.target.value)}>
+        <select>
           {countries.find((country) => country.name == countryName ).cities.map((item,index)=>{
             return (<option key={index} value={item}>{item} </option>)
           })}

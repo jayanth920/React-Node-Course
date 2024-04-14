@@ -1,52 +1,27 @@
-import React, { useState } from 'react'
 import './App.css'
-import { ThemeContextProvider } from './comp/ThemeContext'
-import Box from './comp/Box'
-import User from './comp/User'
-import { UserContextProvider } from './comp/UserContext'
-import MutableRef from './comp/MutableRef'
-import { Private } from './comp/Private'
-import { Profile } from './comp/Profile'
-import { List } from './comp/List'
-import { RandomNumber } from './comp/RandomNumber'
-import { Toast } from './comp/Toast'
-import CustomButton from './comp/Button'
+import {useEffect,useState} from "react"
 
 
-function App() {
-  const [count, setCount] = useState(0)
 
+export default function App() {
+  const [payload, setPayload] = useState<{ results: unknown[] } | null>(null)
+  const [search, setSearch] = useState("")
+  const [list, setList] = useState<{ name: string }[] | null>(null)
+
+
+  useEffect(() => {
+    fetch("https://pokeapi.co/api/v2/pokemon/?offset=20&limit=10")
+      .then(res => res.json())
+      .then(dat => setPayload(dat))
+    console.log(payload?.results)
+  }, [])
+  
   return (
     <div className='App'>
-      {/* <ThemeContextProvider>
-      <Box/>
-    </ThemeContextProvider> */}
-      {/* <UserContextProvider>
-
-    <User/>
-      </UserContextProvider> */}
-      {/* <Private isLoggedIn={true} component={Profile}/> */}
-      {/* <List
-        items={[
-          1, 2, 3
-        ]}
-        onClick={(item) => console.log(item)} /> */}
-
-      {/* <List
-        items={[
-          { id:1, firstName: "John", lastName: "Doe" },
-          { id:2, firstName: "Jane", lastName: "Smith" },
-          { id:3, firstName: "Alice", lastName: "Johnson" }
-        ]}
-        onClick={(item) => console.log(item)} /> */}
-      HELLO WORLD
-      {/* <RandomNumber value={10} isPositive /> */}
-      {/* <Toast position="center"/> */}
-      <CustomButton variance="primary" onClick={() => console.log("clicked !")}>
-        MyCustom
-      </CustomButton>
+      <input onChange={(e) => e.target.value} />
+      {/* {JSON.stringify(payload)} */}
+      {list && list?.map((item, index) => <li id={index.toString()}>{item.name}</li>)}
+      WORKING
     </div>
   )
 }
-
-export default App
