@@ -1,14 +1,12 @@
-import Counter from "./comp/Counter";
-import ThemeProfile from "./comp/ThemeProfile";
-import Profile from "./comp/theme";
 
+import PostsList from "./features/posts/PostsList";
+import AddPostForm from "./features/posts/AddPostForm";
 const App = () => {
   return (
-    <div>
-      <h2>Redux Complete Tutorial</h2>
-      <Profile />
-      <ThemeProfile />
-    </div>
+    <main className="App">
+      <PostsList/>
+      <AddPostForm/>
+    </main>
   );
 };
 

@@ -1,0 +1,12 @@
+
+.handle{
+    width: 3px;
+    background-color: rgb(150, 150, 150);
+    user-select: none;
+    cursor: col-resize;
+}
+
+.handle:hover,.handle:active {
+    width: 5px;
+    background-color: rgb(171, 96, 242);
+}
